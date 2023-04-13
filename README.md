@@ -1,4 +1,4 @@
-# RTL8762C-gcc-examples
+# RTL8762C GCC Examples
 Firmware examples for the RTL8762C BLE SoC
 
 [![hackaday.io](https://img.shields.io/badge/hackaday-io-gold.svg)](https://hackaday.io/project/182205-py-ft10)
@@ -9,23 +9,16 @@ To obtain this code, clone this repository recursively.
 git clone --recurse-submodules https://github.com/cyber-murmel/rtl8762c-gcc-examples.git
 ```
 
-### SDK
-Register an account at [RealMCU](https://www.realmcu.com) and download the
-*RTL8762C SDK GCC(ZIP)* from the [product page](https://www.realmcu.com/en/Home/Product/93cc0582-3a3f-4ea8-82ea-76c6504e478a).
-This procedure requires an email account.
-
-Extract the zip archive and move the `sdk` directory into the root of this repository.
-
-```shell
-unzip RTL8762C-sdk-gcc-v0.0.5.zip
-mv bee2-sdk-gcc-v0.0.5/sdk ./sdk
-rm -r bee2-sdk-gcc-v0.0.5
-```
-
 ## Toolchain
 To build the firmware you need
-- GNU Make 4.3
-- arm-none-eabi-gcc (GNU Arm Embedded Toolchain 9-2020-q2-update) 9.3.1 20200408 (release)
+- [GNU Make](https://ftp.gnu.org/gnu/make/) 4.3
+- [arm-none-eabi-gcc](https://developer.arm.com/downloads/-/gnu-rm) (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)
+
+You additionally need to install some Python libraries and download the vendor SDK and MPTool files.
+
+### Nix
+Users of Nix or NixOS can simply run `nix-shell` to enter an environment with all necessary binaries and Python libraries. You then only need to download the vendor
+files.
 
 ### Python modules
 The tools used depend on the python modules listed in the `pyproject.toml`.
@@ -38,8 +31,24 @@ poetry install
 
 To enter the environment again, just run `poetry shell` in the root of this repository.
 
-### Nix
-Users of Nix or NixOS can simply run `nix-shell` to enter an environment with all necessary dependencies.
+### Vendor Files
+You need to register an account at [RealMCU](https://www.realmcu.com).
+This requires an email address.
+
+#### SDK
+Download the *RTL8762C SDK GCC(ZIP)* from the 
+[product page](https://www.realmcu.com/en/Home/Product/93cc0582-3a3f-4ea8-82ea-76c6504e478a).
+
+Extract the zip archive and move the `sdk` directory into the root of this repository.
+
+```shell
+unzip RTL8762C-sdk-gcc-v0.0.5.zip
+mv bee2-sdk-gcc-v0.0.5/sdk ./sdk
+rm -r bee2-sdk-gcc-v0.0.5
+```
+
+#### MP Tool Kits
+Download the RTL8762x MP Tool Kits(ZIP) from the vendor page and place it in the tools/rtltool/rtl8762c/ directory.
 
 ## Building
 To build an example, set `TARGET` to one of the directories in [src/targets](src/targets) and run make.
