@@ -27,9 +27,16 @@ To build the firmware you need
 - GNU Make 4.3
 - arm-none-eabi-gcc (GNU Arm Embedded Toolchain 9-2020-q2-update) 9.3.1 20200408 (release)
 
-### rtltool
-For flashing you need to download and install the dependencies for the rtltool submodule.
-Please follow the [installtion section](https://github.com/cyber-murmel/rtltool/blob/main/README.md#installation).
+### Python modules
+The tools used depend on the python modules listed in the `pyproject.toml`.
+Run the following in the root of this repository to create a development environment
+and install the dependencies.
+```shell
+poetry shell
+poetry install
+```
+
+To enter the environment again, just run `poetry shell` in the root of this repository.
 
 ### Nix
 Users of Nix or NixOS can simply run `nix-shell` to enter an environment with all necessary dependencies.
