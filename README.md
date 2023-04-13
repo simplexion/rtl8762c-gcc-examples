@@ -59,13 +59,18 @@ make TARGET=00-blink
 
 The default `TARGET` is `00-blink`
 
-Currently available targets are
-- `00-blink`
-- `01-uart_echo`
-- `02-uart_printf`
+### Boards
+The boards are defined in the [boards](./boards/) directory. Set the `BOARD`
+variable to any of the directory names.
+
+```shell
+make BOARD=rtl8762ckf-dev-board
+```
+
+The default `BOARD` is `EMB1082`
 
 ### Cleanup
-It's advised to clean up build results before switching to a different target.
+It's advised to clean up build results before switching to a different target or board.
 
 ```shell
 make clean
@@ -85,7 +90,7 @@ The UART port can be be set via the `PORT` variable.
 make TARGET=00-blink PORT=/dev/ttyUSB0 flash
 ```
 
-The default `PORT` is `/dev/ttyUSB1`
+The default `PORT` is defined in the [boards](#boards) `board_config.mk` file.
 
 ## Terminal
 To open a miniterm session, run
